@@ -88,7 +88,19 @@ class HorseRaces:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
         '''
-        pass
+        fastest_race = None
+        fastest_time = 999.9
+
+        if horse not in self.race_dict:
+            return (fastest_race, fastest_time)
+        
+        horse_information = self.race_dict[horse] 
+
+        for race, time in horse_information.items():
+            if time < fastest_time:
+                fastest_race = race
+                fastest_time = time 
+        return (fastest_race, fastest_time) 
 
 ###############################################################################
 ##### TASK 3
