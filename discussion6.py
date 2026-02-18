@@ -57,7 +57,20 @@ class HorseRaces:
             inner keys are (str) races, inner values are (int) race times
             EXAMPLE: {'Special Week': {'Tenno Sho Fall': 16.5, 'Tenno Sho Spring': 16.3, 'Teio Sho': 17.0}}
         '''
-        pass
+        result_dict = {} # creates empty dictionary to be filled in with horse names and their race times 
+
+        headers = table[0] # sets the first row of the table as the headers 
+
+        for row in table[1:]: # iterates through the rest of the rows in the table, which contain the horse names
+            horse_name = row[0] # sets the first element of each row as the horse name, which will be the key in the outer dict 
+            result_dict[horse_name] = {} # creates an empty dictionary for each horse name, which will be filled in with the race names and times 
+
+            for i in range(1, len(row)): # iterates through the rest of the elements in each row, which contain the race times
+                race_name = headers[i] # sets the header of each column as the race name, which will be the key in the inner dict
+                race_time = float(row[i]) # converts the race time from a string to a float, which will be the value in the inner dict
+                result_dict[horse_name][race_name] = race_time # adds the race name and time to the inner dict for each horse
+
+        return result_dict # returns the nested dictionary with the horse names as keys and their race times as values
 
 ###############################################################################
 ##### TASK 2
