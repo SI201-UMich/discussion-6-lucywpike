@@ -88,19 +88,19 @@ class HorseRaces:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
         '''
-        fastest_race = None
-        fastest_time = 999.9
+        fastest_race = None # initializes the fastest race as None, which will be the value in the tuple if the horse does not exist in the race
+        fastest_time = 999.9 # initializes the fastest time as 999.9, which will be the value in the tuple if the horse does not exist in the race
 
-        if horse not in self.race_dict:
-            return (fastest_race, fastest_time)
+        if horse not in self.race_dict: # checks if the horse does not exist in the race 
+            return (fastest_race, fastest_time) # returns the tuple with None and 999.9 if the horse does not exist
         
-        horse_information = self.race_dict[horse] 
+        horse_information = self.race_dict[horse] # retrieves the inner dictionary for the given horse, which contains the race names and times 
 
-        for race, time in horse_information.items():
-            if time < fastest_time:
-                fastest_race = race
-                fastest_time = time 
-        return (fastest_race, fastest_time) 
+        for race, time in horse_information.items(): # iterates through the inner dictionary for the given horse, which contains the race names and times 
+            if time < fastest_time: # checks if the current race time is less than the fastest time found so far
+                fastest_race = race # updates the fastest race to the current race
+                fastest_time = time # updates the fastest time to the current race
+        return (fastest_race, fastest_time) # returns the tuple with the fastest race and time for the given horse 
 
 ###############################################################################
 ##### TASK 3
@@ -114,7 +114,12 @@ class HorseRaces:
             A dictionary of tuples of each horse, with their fastest race and time.
             EXAMPLE: {"Oguri Cap": ("Tenno Sho Fall", 16.6), "Mejiro McQueen": ("Tenno Sho Fall", 16.1)}
         '''
-        pass
+        best_dict = {} # creates empty dictionary to be filled in with horse names and their fastest race and time
+
+        for horse in self.race_dict: # iterates through the keys of the outer dictionary, which are the horse names 
+            best_dict[horse] = self.horse_fastest_race(horse) # calls the horse_fastest_race function for each horse and adds the result as the value in the best_dict with the horse name as the key
+
+        return best_dict # returns the dictionary with the horse names as keys and their fastest race and time as values
 
 ###############################################################################
 ##### TASK 4
